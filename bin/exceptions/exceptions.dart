@@ -1,0 +1,1 @@
+class ValorNegativoException implements Exception{}

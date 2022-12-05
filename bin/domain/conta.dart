@@ -1,3 +1,5 @@
+import '../exceptions/exceptions.dart';
+
 abstract class Conta {
   String cliente;
   double saldo;
@@ -5,6 +7,9 @@ abstract class Conta {
   Conta(this.cliente, this.saldo);
 
   void creditar(double valor) {
+    if (valor < 0) {
+      throw ValorNegativoException();  
+    }
     saldo += valor;
   }
 

@@ -1,18 +1,34 @@
 import 'dart:io';
 
-void main(List<String> arguments) {
-  // Crie um objeto da classe Conta para ser manipulado de acordo com a lógica abaixo
+import 'domain/conta.dart';
+import 'exceptions/exceptions.dart';
 
+void main(List<String> arguments) {
+  Conta c1 = ContaCorrente('JJ', 100, 10);
+  
   int opcao = -1;
   while (opcao != 0) {
     exibirMenu();
     opcao = inputAsInt('Informe a opção de menu desejada:');
     switch (opcao) {
       case 1:
+        
+        try {
+          double valor = inputAsDouble('Informe o valor a ser creditado:');
+          c1.creditar(valor);
+          print('Crédito realizado com sucesso!');          
+        } on ValorNegativoException {
+          print('Valor inválido');
+        } catch (e) {
+          print('Erro, favor repetir o processo');
+        }
+
         break;
+      
       case 2:
         break;  
       case 3:
+        print('Saldo: ${c1.saldo}');
         break;
       default:
     }
